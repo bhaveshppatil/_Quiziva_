@@ -156,25 +156,28 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun showSolution() {
+
         radio_button1.setTextColor(Color.RED)
         radio_button2.setTextColor(Color.RED)
         radio_button3.setTextColor(Color.RED)
+        radio_button4.setTextColor(Color.RED)
+
         when (questionModel.answer) {
             1 -> {
-                radio_button1.setTextColor(Color.GREEN)
-                text_view_question.text = "Answer 1 is correct"
+                radio_button1.setTextColor(Color.BLACK)
+                radio_button1.setBackgroundColor(Color.GREEN)
             }
             2 -> {
-                radio_button2.setTextColor(Color.GREEN)
-                text_view_question.text = "Answer 2 is correct"
+                radio_button2.setTextColor(Color.BLACK)
+                radio_button2.setBackgroundColor(Color.GREEN)
             }
             3 -> {
-                radio_button3.setTextColor(Color.GREEN)
-                text_view_question.text = "Answer 3 is correct"
+                radio_button3.setTextColor(Color.BLACK)
+                radio_button3.setBackgroundColor(Color.GREEN)
             }
             4 -> {
-                radio_button4.setTextColor(Color.GREEN)
-                text_view_question.text = "Answer 4 is correct"
+                radio_button4.setTextColor(Color.BLACK)
+                radio_button4.setBackgroundColor(Color.GREEN)
             }
         }
         if (questionCounter < questionCount) {

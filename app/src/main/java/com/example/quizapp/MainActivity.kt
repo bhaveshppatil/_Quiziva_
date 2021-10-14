@@ -3,7 +3,7 @@ package com.example.quizapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizapp.Adapter.ClickListener
 import com.example.quizapp.Adapter.QuizTopicAdapter
 import com.example.quizapp.Model.QuizTopicModel
@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity(), ClickListener {
         quizTopicModelList.add(quizTopicModel2)
         val quizTopicModel3 = QuizTopicModel(R.drawable.icons8_networking_64, "Networking")
         quizTopicModelList.add(quizTopicModel3)
-        val quizTopicModel4 = QuizTopicModel(R.drawable.icons8_cyber_security_50, "Computer Security")
+        val quizTopicModel4 =
+            QuizTopicModel(R.drawable.icons8_cyber_security_50, "Computer Security")
         quizTopicModelList.add(quizTopicModel4)
         val quizTopicModel5 = QuizTopicModel(R.drawable.icons8_database_64, "Database")
         quizTopicModelList.add(quizTopicModel5)
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
 
     fun setRecyclerView() {
         quizTopicAdapter = QuizTopicAdapter(this, quizTopicModelList, this)
-        val layoutManager = GridLayoutManager(this, 2)
+        val layoutManager = LinearLayoutManager(this)
         recycler_view_quiz_topic.layoutManager = layoutManager
         recycler_view_quiz_topic.adapter = quizTopicAdapter
 
