@@ -3,14 +3,24 @@ package com.example.quizapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quizapp.Adapter.ClickListener
 import com.example.quizapp.Adapter.QuizTopicAdapter
+import com.example.quizapp.Database.QuestionDAO
+import com.example.quizapp.Database.QuizRoomDatabase
 import com.example.quizapp.Model.QuizTopicModel
+import com.example.quizapp.Repository.QuizRepository
+import com.example.quizapp.ViewModel.QuizViewModel
+import com.example.quizapp.ViewModel.QuizViewModelFactory
 import com.example.quizapp.Views.QuizActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ClickListener {
+
+    private lateinit var quizRoomDatabase: QuizRoomDatabase
+    private lateinit var quizViewModel: QuizViewModel
+    private lateinit var questionDAO: QuestionDAO
 
     private val quizTopicModelList = mutableListOf<QuizTopicModel>()
     lateinit var quizTopicAdapter: QuizTopicAdapter
@@ -18,6 +28,14 @@ class MainActivity : AppCompatActivity(), ClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        questionDAO = QuizRoomDatabase.getQuestionObject(this).getQuestionDAO()
+        val quizRepository = QuizRepository(questionDAO)
+        val quizViewModelFactory = QuizViewModelFactory(quizRepository)
+        quizViewModel =
+            ViewModelProviders.of(this, quizViewModelFactory).get(QuizViewModel::class.java)
+
+        quizViewModel.deleteAllQuestions()
 
         quizTopicData()
         setRecyclerView()
@@ -33,8 +51,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
         quizTopicModelList.add(quizTopicModel2)
         val quizTopicModel3 = QuizTopicModel(R.drawable.icons8_networking_64, "Networking")
         quizTopicModelList.add(quizTopicModel3)
-        val quizTopicModel4 =
-            QuizTopicModel(R.drawable.icons8_cyber_security_50, "Computer Security")
+        val quizTopicModel4 = QuizTopicModel(R.drawable.icons8_cyber_security_50, "Computer Security")
         quizTopicModelList.add(quizTopicModel4)
         val quizTopicModel5 = QuizTopicModel(R.drawable.icons8_database_64, "Database")
         quizTopicModelList.add(quizTopicModel5)
