@@ -24,10 +24,6 @@ import com.example.quizapp.Repository.QuizRepository
 import com.example.quizapp.ViewModel.QuizViewModel
 import com.example.quizapp.ViewModel.QuizViewModelFactory
 import kotlinx.android.synthetic.main.activity_quiz.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 
 class QuizActivity : AppCompatActivity() {
@@ -44,8 +40,8 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var correctAnimation: Animation
     private lateinit var wrongAnimation: Animation
 
-    private lateinit var countDownTimer: CountDownTimer
-    var timeValue = 130
+//    private lateinit var countDownTimer: CountDownTimer
+//    var timeValue = 130
     var MUSIC_FLAG = 0
     private lateinit var timerDialog: TimerDialog
     private lateinit var playSound: PlaySound
@@ -219,11 +215,17 @@ class QuizActivity : AppCompatActivity() {
 
 
     private fun moveToNextQuestion() {
+        radio_group.clearCheck()
 
         radio_button1.setTextColor(Color.BLACK)
         radio_button2.setTextColor(Color.BLACK)
         radio_button3.setTextColor(Color.BLACK)
         radio_button4.setTextColor(Color.BLACK)
+
+        radio_button1.setBackgroundColor(Color.WHITE)
+        radio_button2.setBackgroundColor(Color.WHITE)
+        radio_button3.setBackgroundColor(Color.WHITE)
+        radio_button4.setBackgroundColor(Color.WHITE)
 
         if (questionCounter < questionCount) {
             androidQuestionModel = questionModelList[questionCounter]
@@ -257,8 +259,8 @@ class QuizActivity : AppCompatActivity() {
 
         if (ansPosition == androidQuestionModel.answer) {
             MUSIC_FLAG = 1
+            rbSelected.setBackgroundResource(R.drawable.correct_ans_bg)
             playSound.seAudioforAnswers(MUSIC_FLAG)
-            rbSelected.setBackgroundColor(Color.GREEN)
             rbSelected.startAnimation(correctAnimation)
             scoreCount++;
         } else {
@@ -278,16 +280,16 @@ class QuizActivity : AppCompatActivity() {
 
         when (androidQuestionModel.answer) {
             1 -> {
-                radio_button1.setTextColor(Color.BLACK)
+                radio_button1.setBackgroundResource(R.drawable.correct_ans_bg)
             }
             2 -> {
-                radio_button2.setTextColor(Color.BLACK)
+                radio_button2.setBackgroundResource(R.drawable.correct_ans_bg)
             }
             3 -> {
-                radio_button3.setTextColor(Color.BLACK)
+                radio_button3.setBackgroundResource(R.drawable.correct_ans_bg)
             }
             4 -> {
-                radio_button4.setTextColor(Color.BLACK)
+                radio_button4.setBackgroundResource(R.drawable.correct_ans_bg)
             }
         }
         if (questionCounter < questionCount) {
