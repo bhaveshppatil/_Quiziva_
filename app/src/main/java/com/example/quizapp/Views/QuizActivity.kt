@@ -3,13 +3,10 @@ package com.example.quizapp.Views
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -40,7 +37,9 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var correctAnimation: Animation
     private lateinit var wrongAnimation: Animation
 
-//    private lateinit var countDownTimer: CountDownTimer
+    private var questionTotal: Int = 0
+
+    //    private lateinit var countDownTimer: CountDownTimer
 //    var timeValue = 130
     var MUSIC_FLAG = 0
     private lateinit var timerDialog: TimerDialog
@@ -67,9 +66,12 @@ class QuizActivity : AppCompatActivity() {
         correctAnimation = AnimationUtils.loadAnimation(this, R.anim.right_ans_animation)
         correctAnimation.repeatCount = 3
 
-        insertQuestionToDB()
+        val insertQuestions = InsertAndroidQuestions()
+        for (i in 0..insertQuestions.insertQuestionToDB().size) {
+            quizViewModel.addQuestionData(insertQuestions.insertQuestionToDB()[i])
+        }
 
-        quizViewModel.getRoutines().observe(this, Observer {
+        quizViewModel.getAndroidQuestions().observe(this, Observer {
             questionModelList.clear()
             questionModelList.addAll(it)
             questionCount = questionModelList.size
@@ -77,24 +79,6 @@ class QuizActivity : AppCompatActivity() {
             moveToNextQuestion()
         })
 
-
-        val radioGroup = findViewById<View>(R.id.radio_group) as RadioGroup
-        radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            when (checkedId) {
-                R.id.radio_button1 -> {
-                    Toast.makeText(this, "Option First Selected", Toast.LENGTH_SHORT).show();
-                }
-                R.id.radio_button2 -> {
-                    Toast.makeText(this, "Option Second Selected", Toast.LENGTH_SHORT).show();
-                }
-                R.id.radio_button3 -> {
-                    Toast.makeText(this, "Option Third Selected", Toast.LENGTH_SHORT).show();
-                }
-                R.id.radio_button4 -> {
-                    Toast.makeText(this, "Option Fourth Selected", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
         /*     countDownTimer = object : CountDownTimer(32000, 1000) {
                   override fun onTick(millisUntilFinished: Long) {
                       tvTimer.text = timeValue.toString()
@@ -128,95 +112,24 @@ class QuizActivity : AppCompatActivity() {
         }
     }
 
-    private fun disableButtons() {
-        radio_button1.isEnabled = false
-        radio_button2.isEnabled = false
-        radio_button3.isEnabled = false
-        radio_button4.isEnabled = false
+    /* private fun disableButtons() {
+         radio_button1.isEnabled = false
+         radio_button2.isEnabled = false
+         radio_button3.isEnabled = false
+         radio_button4.isEnabled = false
 
-    }
-
-
-    fun insertQuestionToDB() {
-        val questionModel = AndroidQuestionModel(
-            "Android Web Browser Is Based On?",
-            "Safari",
-            "Firefox",
-            "Open-source Webkit",
-            "Chrome",
-            3
-        )
-
-        quizViewModel.addQuestionData(questionModel)
-
-        val questionModel1 = AndroidQuestionModel(
-            "Which of the following virtual machine is used by the Android operating system?",
-
-            "Dalvik virtual machine",
-            "JVM",
-            "Simple virtual machine",
-            "None of the above",
-
-            1
-        )
-        quizViewModel.addQuestionData(questionModel1)
-
-
-        val questionModel2 = AndroidQuestionModel(
-            " What is the use of content provider in Android?",
-
-            "For storing the data in the database",
-            "For sharing the data between applications",
-            "For sending the data from an application to another application",
-            "None of the above",
-            3
-        )
-        quizViewModel.addQuestionData(questionModel2)
-
-
-        val questionModel3 = AndroidQuestionModel(
-            " APK stands for??",
-
-            "Android Phone Kit",
-            "Android Page Kit",
-            "Android Poster Kit",
-            "Android Package Kit",
-
-            4
-        )
-        quizViewModel.addQuestionData(questionModel3)
-
-
-        val questionModel4 = AndroidQuestionModel(
-            "What does API stand for?",
-
-            "Android Programming Interface",
-            "Application Programming Interface",
-            "Android Page Interface",
-            "Application Page Interface",
-
-            1
-        )
-        quizViewModel.addQuestionData(questionModel4)
-
-
-        val questionModel5 = AndroidQuestionModel(
-            " What is an activity in android?",
-
-            "android class",
-            "android package",
-            "UI Presenter",
-            "A single screen in an application with supporting java code",
-            4
-        )
-        quizViewModel.addQuestionData(questionModel5)
-
-    }
-
+     }*/
 
     private fun moveToNextQuestion() {
-        radio_group.clearCheck()
+        var intent = Intent()
+        intent = getIntent()
+        val topicName: String? = intent.getStringExtra("TopicName")
 
+        questionTotal++
+
+        tvTotalQuestions.text = "$questionTotal / ${questionModelList.size}"
+
+        radio_group.clearCheck()
         radio_button1.setTextColor(Color.BLACK)
         radio_button2.setTextColor(Color.BLACK)
         radio_button3.setTextColor(Color.BLACK)
@@ -226,21 +139,26 @@ class QuizActivity : AppCompatActivity() {
         radio_button2.setBackgroundColor(Color.WHITE)
         radio_button3.setBackgroundColor(Color.WHITE)
         radio_button4.setBackgroundColor(Color.WHITE)
+        if (topicName?.equals("Android") == true) {
+            if (questionCounter < questionCount) {
+                androidQuestionModel = questionModelList[questionCounter]
+                tvQuestion.text = androidQuestionModel.question
+                radio_button1.text = androidQuestionModel.option1
+                radio_button2.text = androidQuestionModel.option2
+                radio_button3.text = androidQuestionModel.option3
+                radio_button4.text = androidQuestionModel.option4
+                questionCounter++;
+                isAnswered = false;
+                /* countDownTimer.cancel()
+                 countDownTimer.start()*/
 
-        if (questionCounter < questionCount) {
-            androidQuestionModel = questionModelList[questionCounter]
-            tvQuestion.text = androidQuestionModel.question
-            radio_button1.text = androidQuestionModel.option1
-            radio_button2.text = androidQuestionModel.option2
-            radio_button3.text = androidQuestionModel.option3
-            radio_button4.text = androidQuestionModel.option4
-            questionCounter++;
-            isAnswered = false;
-            /* countDownTimer.cancel()
-             countDownTimer.start()*/
-
+            } else {
+                quizEnded()
+            }
         } else {
-            quizEnded()
+            layoutMain.visibility = View.GONE
+            tvNoQuizFound.visibility = View.VISIBLE
+            tvNoQuizFound.text = "$topicName data not found, attend another quiz"
         }
     }
 
@@ -265,18 +183,16 @@ class QuizActivity : AppCompatActivity() {
             scoreCount++;
         } else {
             rbSelected.startAnimation(wrongAnimation)
+            rbSelected.setBackgroundResource(R.drawable.wrong_ans_bg)
+
             MUSIC_FLAG = 2
             playSound.seAudioforAnswers(MUSIC_FLAG)
+
             showSolution()
         }
     }
 
     private fun showSolution() {
-
-        radio_button1.setBackgroundColor(Color.RED)
-        radio_button2.setBackgroundColor(Color.RED)
-        radio_button3.setBackgroundColor(Color.RED)
-        radio_button4.setBackgroundColor(Color.RED)
 
         when (androidQuestionModel.answer) {
             1 -> {

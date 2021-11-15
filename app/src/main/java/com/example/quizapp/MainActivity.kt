@@ -68,8 +68,8 @@ class MainActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun onStartQuiz(quizTopicModel: QuizTopicModel, position: Int) {
-
         val intent = Intent(this, QuizActivity::class.java)
+        intent.putExtra("TopicName", quizTopicModel.topicName)
         startActivity(intent)
     }
 }

@@ -11,7 +11,7 @@ class QuizViewModel(val quizRepository: QuizRepository) : ViewModel() {
         quizRepository.addQuestionTORoom(androidQuestionModel)
     }
 
-    fun getRoutines(): LiveData<List<AndroidQuestionModel>> {
+    fun getAndroidQuestions(): LiveData<List<AndroidQuestionModel>> {
         return quizRepository.getAllRoutines()
     }
 
