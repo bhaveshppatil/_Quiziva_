@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/quiz_bg"
     android:padding="16dp"
     tools:context=".Views.QuizActivity">
 
@@ -24,6 +26,7 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/layoutCounter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -48,86 +51,127 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutCounter"
+            android:layout_marginTop="20dp"
+            android:padding="10dp">
 
-        <!-- <TextView
-             android:id="@+id/text_view_question_count"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@id/text_view_score"
-             android:text="Question: 1/x"
-             android:textColor="@android:color/black" />
-         -->
+            <TextView
+                android:id="@+id/tvWrong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/icons8_cross_mark_48"
+                android:drawablePadding="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tvCorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawableStart="@drawable/icons8_done_48"
+                android:drawablePadding="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tvQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/radio_group"
+            android:layout_above="@id/crdRadio"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/concert_one"
+            android:fontFamily="@font/acme"
             android:gravity="center"
             android:text="question"
             android:textColor="@android:color/black"
             android:textSize="25sp" />
 
-        <RadioGroup
-            android:id="@+id/radio_group"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crdRadio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:background="@drawable/quiz_bg"
+            app:cardCornerRadius="10dp">
 
-            <RadioButton
-                android:id="@+id/radio_button1"
+            <RadioGroup
+                android:id="@+id/radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:checked="false"
-                android:fontFamily="@font/poppins_medium"
-                android:paddingStart="20dp"
-                android:text="Option 1"
-                android:textSize="17sp" />
+                android:background="@android:color/transparent"
+                android:padding="20dp">
 
-            <RadioButton
-                android:id="@+id/radio_button2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:fontFamily="@font/poppins_medium"
-                android:paddingStart="20dp"
-                android:text="Option 1"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/radio_button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Option 1"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/radio_button3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:fontFamily="@font/poppins_medium"
-                android:paddingStart="20dp"
-                android:text="Option 1"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/radio_button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Option 1"
+                    android:textSize="17sp" />
 
-            <RadioButton
-                android:id="@+id/radio_button4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:fontFamily="@font/poppins_medium"
-                android:paddingStart="20dp"
-                android:text="Option 1"
-                android:textSize="17sp" />
+                <RadioButton
+                    android:id="@+id/radio_button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Option 1"
+                    android:textSize="17sp" />
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radio_button4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Option 1"
+                    android:textSize="17sp" />
+
+            </RadioGroup>
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/btnConfirm"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/radio_group"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="40dp"
-            android:backgroundTint="#08F3B0"
+            android:layout_below="@id/crdRadio"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/btn_bg"
             android:fontFamily="@font/poppins_medium"
+            android:paddingStart="50dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="50dp"
+            android:paddingBottom="20dp"
             android:text="Confirm"
             android:textColor="@color/black"
             android:textSize="18sp" />

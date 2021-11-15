@@ -34,13 +34,16 @@ class QuizActivity : AppCompatActivity() {
     private var questionCount: Int = 0
     private var questionCounter: Int = 0
     private var scoreCount: Int = 0
+    private var correct: Int = 0
+    private var wrong: Int = 0
     private lateinit var correctAnimation: Animation
     private lateinit var wrongAnimation: Animation
 
     private var questionTotal: Int = 0
 
     //    private lateinit var countDownTimer: CountDownTimer
-//    var timeValue = 130
+    //    var timeValue = 130
+
     var MUSIC_FLAG = 0
     private lateinit var timerDialog: TimerDialog
     private lateinit var playSound: PlaySound
@@ -135,10 +138,11 @@ class QuizActivity : AppCompatActivity() {
         radio_button3.setTextColor(Color.BLACK)
         radio_button4.setTextColor(Color.BLACK)
 
-        radio_button1.setBackgroundColor(Color.WHITE)
-        radio_button2.setBackgroundColor(Color.WHITE)
-        radio_button3.setBackgroundColor(Color.WHITE)
-        radio_button4.setBackgroundColor(Color.WHITE)
+        radio_button1.setBackgroundColor(Color.TRANSPARENT)
+        radio_button2.setBackgroundColor(Color.TRANSPARENT)
+        radio_button3.setBackgroundColor(Color.TRANSPARENT)
+        radio_button4.setBackgroundColor(Color.TRANSPARENT)
+
         if (topicName?.equals("Android") == true) {
             if (questionCounter < questionCount) {
                 androidQuestionModel = questionModelList[questionCounter]
@@ -181,10 +185,14 @@ class QuizActivity : AppCompatActivity() {
             playSound.seAudioforAnswers(MUSIC_FLAG)
             rbSelected.startAnimation(correctAnimation)
             scoreCount++;
+            correct++
+            tvCorrect.text = "$correct"
+
         } else {
             rbSelected.startAnimation(wrongAnimation)
             rbSelected.setBackgroundResource(R.drawable.wrong_ans_bg)
-
+            wrong++
+            tvWrong.text = "$wrong"
             MUSIC_FLAG = 2
             playSound.seAudioforAnswers(MUSIC_FLAG)
 
@@ -208,6 +216,7 @@ class QuizActivity : AppCompatActivity() {
                 radio_button4.setBackgroundResource(R.drawable.correct_ans_bg)
             }
         }
+
         if (questionCounter < questionCount) {
             btnConfirm.text = "Next"
         } else {

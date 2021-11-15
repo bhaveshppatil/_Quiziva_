@@ -6,50 +6,45 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_margin="10dp"
-        app:cardBackgroundColor="#08F3B0"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/quiz_bg"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/tvTopicName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+               android:layout_margin="5dp"
                 android:fontFamily="@font/concert_one"
                 android:gravity="center"
-                android:text="Android Quiz"
+                android:text="Android"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="18sp" />
 
-            <Button
-                android:id="@+id/btnStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ivStart"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/tvTopicName"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:backgroundTint="#09DAED"
-                android:fontFamily="@font/poppins_medium"
-                android:text="Start"
-                android:textColor="@color/black" />
+                android:src="@drawable/icons8_arrow_64" />
 
             <ImageView
                 android:id="@+id/ivTopicIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/tvTopicName"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/icons8_android_os_50" />
+                android:src="@drawable/icons8_android_os_48" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -27,27 +26,9 @@ class QuizTopicAdapter(
         val quizTopicModel = quizTopicList[position]
 
         holder.title.text = quizTopicModel.topicName
-        if (quizTopicModel.topicName.contains("Android")) {
-            holder.ivIcon.setImageResource(R.drawable.icons8_android_os_50)
-        }
-        if (quizTopicModel.topicName.contains("Java")) {
-            holder.ivIcon.setImageResource(R.drawable.icons8_java_64)
-        }
-        if (quizTopicModel.topicName.contains("Kotlin")) {
-            holder.ivIcon.setImageResource(R.drawable.icons8_kotlin_48)
-        }
-        if (quizTopicModel.topicName.contains("Networking")) {
-            holder.ivIcon.setImageResource(R.drawable.icons8_networking_64)
-        }
-        if (quizTopicModel.topicName.contains("Computer Security")) {
-            holder.ivIcon.setImageResource(R.drawable.icons8_cyber_security_50)
-        }
-        if (quizTopicModel.topicName.contains("Database")) {
-            holder.ivIcon.setImageResource(R.drawable.icons8_android_os_50)
-        }
+        holder.ivIcon.setImageResource(quizTopicModel.iconID)
 
-
-        holder.btnStart.setOnClickListener {
+        holder.ivStart.setOnClickListener {
             clickListener.onStartQuiz(quizTopicModel, position)
         }
     }
@@ -61,6 +42,6 @@ class QuizTopicViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val title: TextView = itemView.findViewById(R.id.tvTopicName)
     val ivIcon: ImageView = itemView.findViewById(R.id.ivTopicIcon)
-    val btnStart: Button = itemView.findViewById(R.id.btnStart)
+    val ivStart: ImageView = itemView.findViewById(R.id.ivStart)
 
 }
