@@ -18,6 +18,8 @@ import com.example.quizapp.MusicController.PlaySound
 import com.example.quizapp.MusicController.TimerDialog
 import com.example.quizapp.R
 import com.example.quizapp.Repository.QuizRepository
+import com.example.quizapp.Utils.InsertAndroidQuestions
+import com.example.quizapp.Utils.InsertKotlinQuestions
 import com.example.quizapp.ViewModel.QuizViewModel
 import com.example.quizapp.ViewModel.QuizViewModelFactory
 import kotlinx.android.synthetic.main.activity_quiz.*
@@ -50,11 +52,14 @@ class QuizActivity : AppCompatActivity() {
 
     private var isAnswered: Boolean = false
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
         supportActionBar?.hide()
+
+        var intent = Intent()
+        intent = getIntent()
+        val topicName: String = intent.getStringExtra("TopicName").toString()
 
         questionDAO = QuizRoomDatabase.getQuestionObject(this).getQuestionDAO()
         val quizRepository = QuizRepository(questionDAO)
@@ -70,8 +75,17 @@ class QuizActivity : AppCompatActivity() {
         correctAnimation.repeatCount = 3
 
         val insertQuestions = InsertAndroidQuestions()
-        for (i in 0..insertQuestions.insertQuestionToDB().size) {
-            quizViewModel.addQuestionData(insertQuestions.insertQuestionToDB()[i])
+        val kotlinQuestions = InsertKotlinQuestions()
+        if (topicName == "Android") {
+
+            for (i in 0..insertQuestions.insertQuestionToDB().size) {
+                quizViewModel.addQuestionData(insertQuestions.insertQuestionToDB()[i])
+            }
+        } else if (topicName == "Kotlin") {
+
+            for (i in 0..kotlinQuestions.insertKotlinQuestionToDB().size) {
+                quizViewModel.addQuestionData(kotlinQuestions.insertKotlinQuestionToDB()[i])
+            }
         }
 
         quizViewModel.getAndroidQuestions().observe(this, Observer {
@@ -126,7 +140,7 @@ class QuizActivity : AppCompatActivity() {
     private fun moveToNextQuestion() {
         var intent = Intent()
         intent = getIntent()
-        val topicName: String? = intent.getStringExtra("TopicName")
+        val topicName: String = intent.getStringExtra("TopicName").toString()
 
         questionTotal++
 
@@ -143,7 +157,7 @@ class QuizActivity : AppCompatActivity() {
         radio_button3.setBackgroundColor(Color.TRANSPARENT)
         radio_button4.setBackgroundColor(Color.TRANSPARENT)
 
-        if (topicName?.equals("Android") == true) {
+        if (topicName.equals("Android") || topicName.equals("Kotlin")) {
             if (questionCounter < questionCount) {
                 androidQuestionModel = questionModelList[questionCounter]
                 tvQuestion.text = androidQuestionModel.question

@@ -1,4 +1,4 @@
-package com.example.quizapp.Views
+package com.example.quizapp.Utils
 
 import com.example.quizapp.Model.AndroidQuestionModel
 import com.example.quizapp.ViewModel.QuizViewModel
