@@ -182,7 +182,9 @@ class QuizActivity : AppCompatActivity() {
 
     private fun quizEnded() {
         val intent = Intent(this, ResultActivity::class.java)
-        intent.putExtra("scoreResult", scoreCount)
+        intent.putExtra("correct", correct)
+        intent.putExtra("wrong", wrong)
+
         startActivity(intent)
 
     }
@@ -198,7 +200,6 @@ class QuizActivity : AppCompatActivity() {
             rbSelected.setBackgroundResource(R.drawable.correct_ans_bg)
             playSound.seAudioforAnswers(MUSIC_FLAG)
             rbSelected.startAnimation(correctAnimation)
-            scoreCount++;
             correct++
             tvCorrect.text = "$correct"
 
@@ -209,7 +210,6 @@ class QuizActivity : AppCompatActivity() {
             tvWrong.text = "$wrong"
             MUSIC_FLAG = 2
             playSound.seAudioforAnswers(MUSIC_FLAG)
-
             showSolution()
         }
     }

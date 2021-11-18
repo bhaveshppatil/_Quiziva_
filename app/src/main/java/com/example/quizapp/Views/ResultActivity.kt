@@ -32,8 +32,16 @@ class ResultActivity : AppCompatActivity() {
 
         quizViewModel.deleteAllQuestions()
         val intent = intent
-        val score = intent.getIntExtra("scoreResult", 0)
+        val score = intent.getIntExtra("correct", 0)
+        val wrong = intent.getIntExtra("wrong", 0)
+
+        tvCorrectAns.text = "Correct Answers - $score / $wrong"
         tvPointsEarned.text = "You Earned $score Points"
+
+        btnDone.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onBackPressed() {
