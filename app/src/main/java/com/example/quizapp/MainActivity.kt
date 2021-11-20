@@ -15,6 +15,7 @@ import com.example.quizapp.Repository.QuizRepository
 import com.example.quizapp.ViewModel.QuizViewModel
 import com.example.quizapp.ViewModel.QuizViewModelFactory
 import com.example.quizapp.Views.QuizActivity
+import com.example.quizapp.Views.SelectOption
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ClickListener {
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun onStartQuiz(quizTopicModel: QuizTopicModel, position: Int) {
-        val intent = Intent(this, QuizActivity::class.java)
+        val intent = Intent(this, SelectOption::class.java)
         intent.putExtra("TopicName", quizTopicModel.topicName)
         startActivity(intent)
     }

@@ -14,7 +14,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/crd_user_bg"
+            android:background="@drawable/crd_bg"
             android:padding="20dp">
 
             <androidx.cardview.widget.CardView
@@ -26,10 +26,11 @@
 
                 <ImageView
                     android:id="@+id/ivUserProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/icons8_android_os_48" />
+                    android:src="@drawable/ideas" />
 
             </androidx.cardview.widget.CardView>
 
@@ -41,7 +42,7 @@
                 android:layout_toEndOf="@id/crdUserProfile"
                 android:fontFamily="@font/concert_one"
                 android:gravity="center"
-                android:text="Username"
+                android:text="Welcome"
                 android:textColor="@color/white"
                 android:textSize="30sp" />
         </RelativeLayout>

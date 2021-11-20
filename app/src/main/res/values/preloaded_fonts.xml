@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/acme</item>
         <item>@font/bree_serif</item>
+        <item>@font/cantora_one</item>
+        <item>@font/capriola</item>
         <item>@font/concert_one</item>
         <item>@font/poppins_medium</item>
     </array>

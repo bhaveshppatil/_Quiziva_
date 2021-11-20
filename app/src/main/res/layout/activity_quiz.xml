@@ -85,18 +85,6 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/crdRadio"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/acme"
-            android:gravity="center"
-            android:text="question"
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
-
         <androidx.cardview.widget.CardView
             android:id="@+id/crdRadio"
             android:layout_width="match_parent"
@@ -105,58 +93,77 @@
             android:background="@drawable/quiz_bg"
             app:cardCornerRadius="10dp">
 
-            <RadioGroup
-                android:id="@+id/radio_group"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:padding="20dp">
+                android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/radio_button1"
+                <TextView
+                    android:id="@+id/tvQuestion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:fontFamily="@font/poppins_medium"
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:text="Option 1"
-                    android:textSize="17sp" />
+                    android:fontFamily="@font/acme"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:text="question"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp" />
 
-                <RadioButton
-                    android:id="@+id/radio_button2"
+
+                <RadioGroup
+                    android:id="@+id/radio_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:fontFamily="@font/poppins_medium"
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:text="Option 1"
-                    android:textSize="17sp" />
+                    android:background="@android:color/transparent"
+                    android:padding="20dp">
 
-                <RadioButton
-                    android:id="@+id/radio_button3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:fontFamily="@font/poppins_medium"
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:text="Option 1"
-                    android:textSize="17sp" />
+                    <RadioButton
+                        android:id="@+id/radio_button1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:fontFamily="@font/poppins_medium"
+                        android:padding="10dp"
+                        android:paddingStart="20dp"
+                        android:text="Option 1"
+                        android:textSize="17sp" />
 
-                <RadioButton
-                    android:id="@+id/radio_button4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:fontFamily="@font/poppins_medium"
-                    android:padding="10dp"
-                    android:paddingStart="20dp"
-                    android:text="Option 1"
-                    android:textSize="17sp" />
+                    <RadioButton
+                        android:id="@+id/radio_button2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:fontFamily="@font/poppins_medium"
+                        android:padding="10dp"
+                        android:paddingStart="20dp"
+                        android:text="Option 1"
+                        android:textSize="17sp" />
 
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/radio_button3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:fontFamily="@font/poppins_medium"
+                        android:padding="10dp"
+                        android:paddingStart="20dp"
+                        android:text="Option 1"
+                        android:textSize="17sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio_button4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:fontFamily="@font/poppins_medium"
+                        android:padding="10dp"
+                        android:paddingStart="20dp"
+                        android:text="Option 1"
+                        android:textSize="17sp" />
+
+                </RadioGroup>
+            </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
         <Button
@@ -167,14 +174,14 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:background="@drawable/btn_bg"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/concert_one"
             android:paddingStart="50dp"
             android:paddingTop="20dp"
             android:paddingEnd="50dp"
             android:paddingBottom="20dp"
             android:text="Confirm"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/white"
+            android:textSize="20sp" />
     </RelativeLayout>
 
 </RelativeLayout>

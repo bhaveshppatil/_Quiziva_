@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.QuizApp" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#171D38</item>
-        <item name="colorPrimaryVariant">#171D38</item>
+        <item name="colorPrimary">#68D0E9</item>
+        <item name="colorPrimaryVariant">#68D0E9</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
